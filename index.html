@@ -31,18 +31,18 @@
 
         <section id="main_content">
           <h2>
-<a name="cest-qui-joe-bell-" class="anchor" href="#cest-qui-joe-bell-"><span class="octicon octicon-link"></span></a>C'est qui Joe Bell ?</h2>
+<a name="cest-qui-joe-bell-" class="anchor" href="#cest-qui-joe-bell-"><span class="octicon octicon-link"></span></a>Qui est Joe Bell ?</h2>
 
 <p>Fan de Sherlock Holmes ?
 Joseph Bell était un médecin et professeur de médecine écossais.
 Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.</p>
 
-<h2>
-<a name="wikip%C3%A9dia" class="anchor" href="#wikip%C3%A9dia"><span class="octicon octicon-link"></span></a><a href="http://fr.wikipedia.org/wiki/Joseph_Bell">Wikipédia</a>
-</h2>
-<div id="liste"></div>
+
+<a href="http://fr.wikipedia.org/wiki/Joseph_Bell">Wikipédia</a>
+<h3>Starred GitHub</h3>
+<div id="liste_github"></div>
 <script type="text/javascript">
-    var target_elt = $('#liste');
+    var target_elt = $('#liste_github');
     var url = "https://api.github.com/users/drjoebell/starred";
     var request = $.get(url, {}, function() {}, 'jsonp');
     request.done(function(data) {
@@ -58,6 +58,59 @@ Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.</p>
             }
         });
     });
+</script>
+<h3>Delicious tags</h3>
+<h1>Get Delicious bookmark count with jQuery</h1>
+ 
+URL : <input type='text' id='url' size='50' value='http://www.google.com' />
+<br/><br/>
+<h4>Delicious count : <span id="delicious_result"></span></h4>
+ 
+<button id="delicious">Get Delicious Count (.Ajax)</button>
+<button id="delicious2">Get Delicious Count (.getJSON)</button>
+<script type="text/javascript">
+ 
+$('#delicious').click(function(){
+ 
+ $("#delicious_result").text("Loading......");
+ 
+ var url = $('#url').val();
+ 
+ $.ajax({ 
+ type: "GET",
+ dataType: "json",
+ url: "http://feeds.delicious.com/v2/json/urlinfo/data?url="+url+"&amp;callback=?",
+ success: function(data){
+ 
+  var count = 0;
+  if (data.length > 0) {
+    count = data[0].total_posts;
+  }
+  $("#delicious_result").text(count + ' Saved');
+ 
+   }
+  });
+});
+ 
+$('#delicious2').click(function(){
+ 
+ $("#delicious_result").text("Loading......");
+ 
+ var url = $('#url').val();
+ 
+ $.getJSON("
+    http://feeds.delicious.com/v2/json/urlinfo/data?url="+url+"&amp;callback=?",
+ 
+ function(data) {
+ 
+  var count = 0;
+  if (data.length > 0) {
+    count = data[0].total_posts;
+  }
+  $("#delicious_result").text(count + ' Saved');
+ 
+  }); 
+});
 </script>
         </section>
 
