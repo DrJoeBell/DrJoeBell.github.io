@@ -14,13 +14,8 @@
   <body>
  <div class="container">
     <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-        
-        </header>
-    </div>
       <div class="row">
-        <div class="col-lg-6 ">
+        <div class="col-md-8 col-md-offset-1">
 
         
           <!-- the actual blog post: title/author/date/content -->
@@ -62,7 +57,9 @@ Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.
             var li = $('<li/>').appendTo(ul);
             $("<a/>").attr("href", item.html_url)
                 .attr("title", "un projet que j’affectionne")
-                .html(item.name)
+                .html(item.name + " de " + item.owner.login)
+                
+
                 .appendTo(li);
             if ( i === 10 ) {  // max items
                 return false;
@@ -75,15 +72,71 @@ Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.
         </div>
     <hr>
       <div class="well">
+      <h4>Mes liens sur</h4>
 
+                      <button id="button-php" class="btn btn-primary">PHP</button>
+                      
+                <script type="text/javascript">
+                $('#button-php').click(function() {
+                    $('#listedelicious-elt').empty();
+                    $('#load').html('<img src=\"loading.gif\"/> Recherche en cours...');
+                    var target_elt = $('#listedelicious-elt');
+                    var url = "http://feeds.delicious.com/v2/json/drjoebell/php?count={1.100}";
+                    var request = $.get(url, {}, function() {}, 'jsonp');
+                    request.done(function(data) {
+                        var ul = $('<ul/>').addClass('star-liste').appendTo(target_elt);
+                        $.each(data, function(i, item) {
+                            var li = $('<li/>').appendTo(ul);
+                            $("<a/>").attr("href", item.u)
+                                .attr("title", "un projet que j’affectionne")
+                                .html(item.d)
+                                .appendTo(target_elt).appendTo(li);
+                            $('#load').empty();
+                            if ( i === 10 ) {  // max items
+                                return false;
+                            }
+                        });
+                        });
+                    });
+                </script>
+
+
+                <button id="button-maths" class="btn btn-primary">Maths</button>
+      
+<script type="text/javascript">
+$('#button-maths').click(function() {
+    $('#listedelicious-elt').empty();
+    $('#load').html('<img src=\"loading.gif\"/> Recherche en cours...');
+    var target_elt = $('#listedelicious-elt');
+    var url = "http://feeds.delicious.com/v2/json/drjoebell/maths?count={1.100}";
+    var request = $.get(url, {}, function() {}, 'jsonp');
+    request.done(function(data) {
+        var ul = $('<ul/>').addClass('star-liste').appendTo(target_elt);
+        $.each(data, function(i, item) {
+            var li = $('<li/>').appendTo(ul);
+            $("<a/>").attr("href", item.u)
+                .attr("title", "un projet que j’affectionne")
+                .html(item.d)
+                .appendTo(target_elt).appendTo(li);
+                 $('#load').empty();
+            if ( i === 10 ) {  // max items
+                return false;
+            }
+        });
+        });
+
+    });
+</script>
+
+      <div id="listedelicious"><br><div id="load"></div><br><div id="listedelicious-elt"></div></div>
 </div>
 
 
- 
+ <br><br><br><br><br><br><br><br>
       <footer>
         <div class="row">
           <div class="col-lg-12">
-            <p>Copyright &copy; Company 2013</p>
+            <p>Copyright &copy; Dr Joe Bell 2013</p>
           </div>
         </div>
       </footer>
