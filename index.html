@@ -5,38 +5,55 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Drjoebell : " />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <title>Drjoebell</title>
+        <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
   </head>
 
   <body>
-
+ <div class="container">
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/DrJoeBell">View on GitHub</a>
-
-          <h1 id="project_title">Drjoebell</h1>
-          <h2 id="project_tagline"></h2>
-
+        
         </header>
     </div>
+      <div class="row">
+        <div class="col-lg-6 ">
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h2>
-<a name="cest-qui-joe-bell-" class="anchor" href="#cest-qui-joe-bell-"><span class="octicon octicon-link"></span></a>Qui est Joe Bell ?</h2>
+        
+          <!-- the actual blog post: title/author/date/content -->
+          <h1>Présentation de Dr Joe Bell</h1>
+         <hr>
+<div class="well">
+Github profil:
+<br>
+ <a  href="https://github.com/DrJoeBell"> <button type="button" class="btn btn-success">View Dr Joe Bell on GitHub</button></a>
+</div>
 
+
+
+          <hr>
+
+          <!-- the comment box -->
+          <div class="well">
+            <h4>Qui est Dr Joe Bell</h4>
 <p>Fan de Sherlock Holmes ?
 Joseph Bell était un médecin et professeur de médecine écossais.
-Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.</p>
+Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.
+<br>
+<a  href="http://fr.wikipedia.org/wiki/Joseph_Bell"> <button type="button" class="btn btn-info">Wikipédia</button></a>
 
-<div id="liste_github"></div>
+</p>
+          </div>
+          
+          <hr>
+          <div class="well">
+<h4>Projet que j'affectionne:</h4> <br>
+<div id="liste"></div>
 <script type="text/javascript">
-    var target_elt = $('#liste_github');
+    var target_elt = $('#liste');
     var url = "https://api.github.com/users/drjoebell/starred";
     var request = $.get(url, {}, function() {}, 'jsonp');
     request.done(function(data) {
@@ -46,56 +63,35 @@ Ses méthodes ont inspiré l'auteur Arthur Conan Doyle.</p>
             $("<a/>").attr("href", item.html_url)
                 .attr("title", "un projet que j’affectionne")
                 .html(item.name)
-                .appendTo(target_elt).appendTo(li);
+                .appendTo(li);
             if ( i === 10 ) {  // max items
                 return false;
             }
         });
     });
 </script>
-<fieldset style ="background-color:#ccc;border-radius:2px;text-align:center;">
-<h5>Rechercher un Tag sur delicious</h5>
-
-Tag : <input type='text' id='tag' size='16' value='sio' />
-<button id="button">Rechercher</button>
-<div id="liste2"></div>
-<br/><br/>
-</fieldset>
 
 
+        </div>
+    <hr>
+      <div class="well">
 
-<script type="text/javascript">
-$('#button').click(function() {
-    $('#liste2').empty();
-    var target_elt = $('#liste2');
-    var tag = $('#tag').val();
-    var url = "http://feeds.delicious.com/v2/json/drjoebell/"+tag+"?count={1.100}";
-    var request = $.get(url, {}, function() {}, 'jsonp');
-    request.done(function(data) {
-        var ul = $('<ul/>').addClass('star-liste').appendTo(target_elt);
-        $.each(data, function(i, item) {
-            var li = $('<li/>').appendTo(ul);
-            $("<a/>").attr("href", item.u)
-                .attr("title", "un projet que j’affectionne")
-                .html(item.d)
-                .appendTo(target_elt).appendTo(li);
-            if ( i === 10 ) {  // max items
-                return false;
-            }
-        });
-        });
-    });
-</script>
-<!-- >>> -->
-      </section>
-    </div>
+</div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+
+ 
+      <footer>
+        <div class="row">
+          <div class="col-lg-12">
+            <p>Copyright &copy; Company 2013</p>
+          </div>
+        </div>
       </footer>
-    </div>
+
+    </div><!-- /.container -->
+
+    <!-- JavaScript -->
+    <script src="js/bootstrap.js"></script>
 
     
 
